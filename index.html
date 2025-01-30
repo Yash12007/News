@@ -315,7 +315,7 @@
             // Check if data.results exists and is an array before iterating over it
             if (data.results && Array.isArray(data.results)) {
                 data.results.forEach(article => {
-                    appendNews(article.title, article.content, article.image_url, article.link);
+                    appendNews(artcle.title, article.content, article.image_url, article.link);
                 });
             } else {
                 console.error('Error: Unable to find news articles in the response.');
@@ -323,33 +323,6 @@
         } catch (error) {
             console.error('Error fetching news:', error);
         }
-    }
-    function appendNews(title, content, imageUrl, articleUrl) {
-        const mainElement = document.getElementById('main');
-        const newsElement = document.createElement('div');
-        newsElement.classList.add('news-item');
-        if (title){    
-            const titleElement = document.createElement('h3');
-            titleElement.textContent = title;
-            newsElement.appendChild(titleElement);
-        }
-        if (content){
-            const contentElement = document.createElement('p');
-            contentElement.textContent = content;
-            newsElement.appendChild(contentElement);
-        }
-        if (imageUrl){
-            const imageElement = document.createElement('img');
-            imageElement.src = imageUrl;
-            newsElement.appendChild(imageElement);
-        }
-        if (articleUrl){
-            const linkElement = document.createElement('a');
-            linkElement.href = articleUrl;
-            linkElement.textContent = "Read more";
-            newsElement.appendChild(linkElement);
-        }
-        mainElement.appendChild(newsElement);
     }
     function home(){
         window.location.reload();
