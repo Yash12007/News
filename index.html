@@ -58,7 +58,7 @@
         overflow: hidden; /* Ensure that any overflowing content is hidden */
     }
     .img-container img {
-        max-width: 100%;
+        max-height: 100%;
         height: auto; /* Optional: Maintains aspect ratio */
         width: 100%; /* Make the image fill the entire width of the container */
         object-fit: contain; /* Ensure that the entire image fits within the container */
@@ -304,6 +304,39 @@
             }
         });
     }
+    function appendNews(title, content, imageUrl, articleUrl) {
+      const mainElement = document.getElementById('main');
+      const newsElement = document.createElement('div');
+      newsElement.classList.add('news-item');
+
+      if (title) {
+          const titleElement = document.createElement('h3');
+          titleElement.textContent = title;
+          newsElement.appendChild(titleElement);
+      }
+
+      if (content) {
+          const contentElement = document.createElement('p');
+          contentElement.textContent = content.slice(0, 200) + '...';  // Limiting content to 200 characters
+          newsElement.appendChild(contentElement);
+      }
+
+      if (imageUrl) {
+          const imageElement = document.createElement('img');
+          imageElement.src = imageUrl;
+          imageElement.classList.add('img-fluid');  // Bootstrap class for responsive images
+          newsElement.appendChild(imageElement);
+      }
+
+      if (articleUrl) {
+          const readMoreElement = document.createElement('a');
+          readMoreElement.href = articleUrl;
+          readMoreElement.textContent = 'Read more';
+          newsElement.appendChild(readMoreElement);
+      }                                              }
+      mainElement.appendChild(newsElement);
+  }
+
     async function fetchNews() {
         const API_KEY = 'pub_426056178ad9452ea56aff1255185cf0348fc';
         const API_URL = 'https://newsdata.io/api/1/news?apikey=' + API_KEY + "&q="+search;
